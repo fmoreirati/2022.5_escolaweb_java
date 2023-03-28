@@ -7,14 +7,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DAO {
-    public static Connection conn = null;
-    private static String USER = "root";
-    private static String HOST = "127.0.0.1";
-    private static String BASE = "dbescolaweb";
-    private static String PASS = "";
-    private static String URL = String.format("jdbc:mysql://%s/%s", HOST, BASE);
+    public Connection conn = null;
+    private String USER = "root";
+    private String HOST = "127.0.0.1";
+    private String BASE = "dbescolaweb";
+    private String PASS = "";
+    private String URL = String.format("jdbc:mysql://%s/%s", HOST, BASE);
 
-    public static void Conectar() {
+    public void Conectar() {
         System.out.println("Conectando ao banco...");
         try {
             // Class.forName("com.mysql.jdbc.Driver");
