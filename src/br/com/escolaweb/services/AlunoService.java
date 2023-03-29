@@ -1,11 +1,10 @@
 package br.com.escolaweb.services;
 
-import java.security.MessageDigest;
 import java.sql.PreparedStatement;
-import java.util.Base64;
 import java.util.Date;
 
 import br.com.escolaweb.model.Aluno;
+import br.com.escolaweb.util.Encrypt;
 
 public class AlunoService extends DAO {
 
@@ -30,13 +29,23 @@ public class AlunoService extends DAO {
         stman.close();
     }
 
-    private String sha256(String keys) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            md.update(keys.getBytes());
-            return Base64.getEncoder().encodeToString(md.digest());
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
+    public void addProf(Aluno aluno) throws Exception {
+        String id = Encrypt.sha256(aluno.getEmail(), true);
+        String matricula = String.valueOf(new Date().getTime());
+        aluno.setId(id);
+        aluno.setMatricula(matricula);
+        // Pessoa
+        PessoaService pessoaService = new PessoaService();
+        pessoaService.add(aluno);
+        // Aluno
+        String sql = "insert into aluno (_id, _id_pessoa, matricula) values (?, ?,?)";
+        Conectar();
+        PreparedStatement stman = conn.prepareStatement(sql);
+        stman.setString(1, Encrypt.sha256(aluno.getId()));
+        stman.setString(2, aluno.getId());
+        stman.setString(3, matricula);
+        stman.execute();
+        stman.close();
     }
+
 }
