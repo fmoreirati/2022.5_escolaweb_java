@@ -1,6 +1,7 @@
 package br.com.escolaweb.controller;
 
 import br.com.escolaweb.model.Aluno;
+import br.com.escolaweb.services.AlunoService;
 
 public class AlunoController {
 
@@ -22,9 +23,12 @@ public class AlunoController {
             throw new Exception("Senha invalida!");
         }
 
-        if (aluno.getDataNasc().equals(null)) {
-            throw new Exception("Data de nascimento embranco!");
-        }
+        // if (aluno.getDataNasc().equals(null)) {
+        // throw new Exception("Data de nascimento embranco!");
+        // }
+
+        AlunoService alunoservice = new AlunoService();
+        alunoservice.add(aluno);
 
     }
 }
