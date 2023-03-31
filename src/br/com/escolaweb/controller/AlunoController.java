@@ -28,7 +28,7 @@ public class AlunoController {
         // }
 
         AlunoService alunoservice = new AlunoService();
-        alunoservice.addProf(aluno);
+        alunoservice.add(aluno);
 
     }
 }

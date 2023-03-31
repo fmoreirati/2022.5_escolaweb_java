@@ -25,3 +25,11 @@ create table funcionario(
     cargo varchar(100) not null,
     foreign key (_id_pessoa) references pessoa(_id)
 );
+
+SELECT
+    *
+FROM
+    aluno,
+    pessoa
+WHERE
+    aluno._id_pessoa = pessoa._id;
