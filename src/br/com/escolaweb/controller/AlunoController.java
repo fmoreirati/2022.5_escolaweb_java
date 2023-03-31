@@ -1,6 +1,11 @@
 package br.com.escolaweb.controller;
 
+import java.sql.SQLException;
 import java.util.List;
+
+import com.mysql.cj.xdevapi.JsonArray;
+import com.mysql.cj.xdevapi.JsonParser;
+import com.mysql.cj.xdevapi.JsonValue;
 
 import br.com.escolaweb.model.Aluno;
 import br.com.escolaweb.services.AlunoService;
@@ -30,11 +35,12 @@ public class AlunoController {
         // }
 
         AlunoService alunoservice = new AlunoService();
-        // alunoservice.add(aluno);
-        List<Aluno> alunos = alunoservice.getAll();
-        alunos.forEach(a -> {
-            System.out.println(a.getId() + "|" + a.getNome() + "|" + a.getEmail() + "|" + a.getMatricula());
-        });
+        alunoservice.add(aluno);
+    }
 
+    public List<Aluno> list() throws SQLException {
+        AlunoService alunoservice = new AlunoService();
+        List<Aluno> alunos = alunoservice.getAll();
+        return alunos;
     }
 }
