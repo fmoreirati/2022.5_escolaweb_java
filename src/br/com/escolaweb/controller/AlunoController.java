@@ -1,5 +1,7 @@
 package br.com.escolaweb.controller;
 
+import java.util.List;
+
 import br.com.escolaweb.model.Aluno;
 import br.com.escolaweb.services.AlunoService;
 
@@ -28,7 +30,11 @@ public class AlunoController {
         // }
 
         AlunoService alunoservice = new AlunoService();
-        alunoservice.add(aluno);
+        // alunoservice.add(aluno);
+        List<Aluno> alunos = alunoservice.getAll();
+        alunos.forEach(a -> {
+            System.out.println(a.getId() + "|" + a.getNome() + "|" + a.getEmail() + "|" + a.getMatricula());
+        });
 
     }
 }
