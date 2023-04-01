@@ -40,7 +40,12 @@ public class AlunoController {
 
     public List<Aluno> list() throws SQLException {
         AlunoService alunoservice = new AlunoService();
-        List<Aluno> alunos = alunoservice.getAll();
+        List<Aluno> alunos = alunoservice.get();
         return alunos;
+    }
+
+    public Aluno get(String id) throws SQLException {
+        AlunoService alunoservice = new AlunoService();
+        return alunoservice.get(id);
     }
 }

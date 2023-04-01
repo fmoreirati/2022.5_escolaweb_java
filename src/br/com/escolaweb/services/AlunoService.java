@@ -31,11 +31,27 @@ public class AlunoService extends DAO {
         stman.close();
     }
 
-    public List<Aluno> getAll() throws SQLException {
+    public List<Aluno> get() throws SQLException {
+        return list("");
+    }
+
+    public Aluno get(String id) throws SQLException {
+        return list(id).get(0);
+    }
+
+    private List<Aluno> list(String id) throws SQLException {
         List<Aluno> alunos = new ArrayList<>();
-        String sql = "SELECT pessoa._id, pessoa.nome, pessoa.email, pessoa.data_nasc, pessoa.cadastro, pessoa.ativo, aluno.matricula, aluno._id as _id_aluno FROM aluno, pessoa WHERE aluno._id_pessoa = pessoa._id;";
+        String sql = "" +
+                "SELECT pessoa._id, pessoa.nome, pessoa.email, pessoa.data_nasc, pessoa.cadastro, pessoa.ativo, aluno.matricula, aluno._id as _id_aluno FROM aluno, pessoa WHERE aluno._id_pessoa = pessoa._id";
+        if (!id.equals("")) {
+            sql += " and pessoa._id = ?";
+        }
+        // sql+=" LIMIT 100";
         Conectar();
         PreparedStatement stman = conn.prepareStatement(sql);
+        if (!id.equals("")) {
+            stman.setString(1, id);
+        }
         ResultSet result = stman.executeQuery();
         while (result.next()) {
             Aluno aluno = new Aluno();
