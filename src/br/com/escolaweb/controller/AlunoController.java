@@ -3,10 +3,6 @@ package br.com.escolaweb.controller;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.mysql.cj.xdevapi.JsonArray;
-import com.mysql.cj.xdevapi.JsonParser;
-import com.mysql.cj.xdevapi.JsonValue;
-
 import br.com.escolaweb.model.Aluno;
 import br.com.escolaweb.services.AlunoService;
 
