@@ -38,4 +38,13 @@ public class PessoaService extends DAO {
         stman.close();
     }
 
+    public void delete(String id) throws Exception {
+        String sql1 = "delete from pessoa where _id = ?";
+        Conectar();
+        PreparedStatement stman = conn.prepareStatement(sql1);
+        stman.setString(1, id);
+        stman.executeUpdate();
+        stman.close();
+    }
+
 }

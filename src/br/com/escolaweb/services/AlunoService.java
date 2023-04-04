@@ -65,4 +65,34 @@ public class AlunoService extends DAO {
         return alunos;
     }
 
+    public void update(Aluno aluno) throws Exception {
+        // String id = Encrypt.sha256(aluno.getEmail(), true);
+        // String matricula = String.valueOf(new Date().getTime());
+        // aluno.setId(id);
+        // aluno.setMatricula(matricula);
+        // Pessoa
+        PessoaService pessoaService = new PessoaService();
+        pessoaService.update(aluno);
+        // Aluno
+        String sql = "udate aluno set"
+                + "matricula = ? where aluno._id_pessoa = ?";
+        Conectar();
+        PreparedStatement stman = conn.prepareStatement(sql);
+        stman.setString(1, aluno.getMatricula());
+        stman.setString(2, aluno.getId());
+        stman.executeUpdate();
+        stman.close();
+    }
+
+    public void delete(String id) throws Exception {
+        String sql = "delete from aluno where aluno._id_pessoa = ?";
+        Conectar();
+        PreparedStatement stman = conn.prepareStatement(sql);
+        stman.setString(1, id);
+        stman.execute();
+        PessoaService pessoaService = new PessoaService();
+        pessoaService.delete(id);
+        stman.close();
+    }
+
 }

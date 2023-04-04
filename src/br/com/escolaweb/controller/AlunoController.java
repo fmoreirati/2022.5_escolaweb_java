@@ -31,7 +31,11 @@ public class AlunoController {
         // }
 
         AlunoService alunoservice = new AlunoService();
-        alunoservice.add(aluno);
+        if (aluno.getId().equals(null) || aluno.getId().equals("")) {
+            alunoservice.add(aluno);
+        } else {
+            alunoservice.update(aluno);
+        }
     }
 
     public List<Aluno> list() throws SQLException {
@@ -43,5 +47,10 @@ public class AlunoController {
     public Aluno get(String id) throws SQLException {
         AlunoService alunoservice = new AlunoService();
         return alunoservice.get(id);
+    }
+
+    public void remove(Aluno aluno) throws Exception {
+        AlunoService alunoservice = new AlunoService();
+        alunoservice.delete(aluno.getId());
     }
 }
