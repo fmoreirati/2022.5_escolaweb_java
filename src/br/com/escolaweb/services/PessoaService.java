@@ -20,13 +20,12 @@ public class PessoaService extends DAO {
     }
 
     public void update(Pessoa pessoa) throws Exception {
-        String sql1 = "update pessoa set"
-                + "_id = ?,"
+        String sql1 = "update pessoa set "
                 + " nome = ?,"
                 + " email = ?,"
-                + "data_nasc = ?,"
-                + "senha = ?"
-                + "where _id = ?";
+                + " data_nasc = ?,"
+                + " senha = ?"
+                + " where _id = ?";
         Conectar();
         PreparedStatement stman = conn.prepareStatement(sql1);
         stman.setString(1, pessoa.getNome());

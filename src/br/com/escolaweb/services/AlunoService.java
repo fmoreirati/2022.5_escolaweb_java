@@ -67,15 +67,15 @@ public class AlunoService extends DAO {
 
     public void update(Aluno aluno) throws Exception {
         // String id = Encrypt.sha256(aluno.getEmail(), true);
-        // String matricula = String.valueOf(new Date().getTime());
         // aluno.setId(id);
-        // aluno.setMatricula(matricula);
+        if (aluno.getMatricula().equals("")) {
+            aluno.setMatricula(String.valueOf(new Date().getTime()));
+        }
         // Pessoa
         PessoaService pessoaService = new PessoaService();
         pessoaService.update(aluno);
         // Aluno
-        String sql = "udate aluno set"
-                + "matricula = ? where aluno._id_pessoa = ?";
+        String sql = "update aluno set matricula = ? where aluno._id_pessoa = ?";
         Conectar();
         PreparedStatement stman = conn.prepareStatement(sql);
         stman.setString(1, aluno.getMatricula());

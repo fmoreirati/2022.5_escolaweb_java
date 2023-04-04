@@ -3,18 +3,25 @@ import javax.swing.JOptionPane;
 import br.com.escolaweb.controller.AlunoController;
 import br.com.escolaweb.model.Aluno;
 import br.com.escolaweb.model.Funcionario;
+import br.com.escolaweb.services.AlunoService;
 
 public class App {
     public static void main(String[] args) {
         try {
+            // Funcionario funcionario = new Funcionario();
+
             // Cadastrar alunos
             Aluno aluno = new Aluno();
-            Funcionario funcionario = new Funcionario();
-            aluno.setNome("Ana Maria");
-            aluno.setEmail("ana@email.com");
-            aluno.setSenha("123456");
             AlunoController alunoController = new AlunoController();
+            aluno.setId("a9fuwqQbEesGihT8/cgGLjmCPA82MPN/9OBaeWF9WGQ=");
+            aluno.setNome("Pedro Costa");
+            aluno.setEmail("pedro@email.com");
+            aluno.setSenha("123456");
+            aluno.setMatricula("123456");
             alunoController.cadastrar(aluno);
+
+            // alunoController.remove(aluno);
+
             JOptionPane.showMessageDialog(null, "Cadastrado!");
 
             // Listar Alunos
