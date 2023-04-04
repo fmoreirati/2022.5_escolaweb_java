@@ -3,16 +3,15 @@ import javax.swing.JOptionPane;
 import br.com.escolaweb.controller.AlunoController;
 import br.com.escolaweb.model.Aluno;
 import br.com.escolaweb.model.Funcionario;
-import br.com.escolaweb.services.AlunoService;
 
 public class App {
     public static void main(String[] args) {
+        Funcionario funcionario = new Funcionario();
         try {
-            // Funcionario funcionario = new Funcionario();
+            AlunoController alunoController = new AlunoController();
+            Aluno aluno = new Aluno();
 
             // Cadastrar alunos
-            Aluno aluno = new Aluno();
-            AlunoController alunoController = new AlunoController();
             aluno.setId("a9fuwqQbEesGihT8/cgGLjmCPA82MPN/9OBaeWF9WGQ=");
             aluno.setNome("Pedro Costa");
             aluno.setEmail("pedro@email.com");
