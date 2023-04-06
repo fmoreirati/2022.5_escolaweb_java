@@ -5,8 +5,10 @@ import java.util.List;
 
 import br.com.escolaweb.model.Aluno;
 import br.com.escolaweb.services.AlunoService;
+import br.com.escolaweb.services.imp.AlunoServiceImp;
 
 public class AlunoController {
+    AlunoService alunoservice = new AlunoServiceImp();
 
     public void cadastrar(Aluno aluno) throws Exception {
         if (aluno.getNome().equals(null)) {
@@ -30,7 +32,6 @@ public class AlunoController {
         // throw new Exception("Data de nascimento embranco!");
         // }
 
-        AlunoService alunoservice = new AlunoService();
         if (aluno.getId().equals(null) || aluno.getId().equals("")) {
             alunoservice.add(aluno);
         } else {
@@ -39,18 +40,18 @@ public class AlunoController {
     }
 
     public List<Aluno> list() throws SQLException {
-        AlunoService alunoservice = new AlunoService();
+        // AlunoService alunoservice = new AlunoService();
         List<Aluno> alunos = alunoservice.get();
         return alunos;
     }
 
     public Aluno get(String id) throws SQLException {
-        AlunoService alunoservice = new AlunoService();
+        // AlunoService alunoservice = new AlunoService();
         return alunoservice.get(id);
     }
 
     public void remove(Aluno aluno) throws Exception {
-        AlunoService alunoservice = new AlunoService();
+        // AlunoService alunoservice = new AlunoService();
         alunoservice.delete(aluno.getId());
     }
 }
